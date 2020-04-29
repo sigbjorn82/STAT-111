@@ -11,7 +11,8 @@ knitr::opts_chunk$set(echo = TRUE)
 ```
 
 
-Oppgave 1
+1. Kapittel 12.2, oppgave 16 side 637:
+
 
 
   Galton brukte fedres høyde for å estimere høyden til sønnen. I oppgaven introduseres det at Galton også brukte også gjennomsnitts høyde på forreldre (altså gjennomsnitt mellom mor og far). Videre er det gitt en tabell med 11 snitthøyde til forreldre og høyde på tilhørende datter.
@@ -37,14 +38,12 @@ main = " scatter plot [Daughter ~  Midparent]", xlab = "Midparent Height", ylab 
   Konklusjon: Plottet viser at det samler seg nede i venstre og oppe i høyre hjørne. Det kan intuitivt se ut som om det er en positiv korrelasjon mellom snitt høyde for foreldre og døtres høyde. 
   
   
-  b) 
-    Vi ser av plottet at settene ikke er injektive. For "Daughter Hight" = 69 finnes flere "Midparent Height", og for "Midparent Height" = 65,5 er to kanditater kandidater av døttre. Dette sier oss at det ikke er perfekt korrelasjon, siden det da ville vert en til en. Dette sier oss ikke at det ikke er en korrelasjon, men at det også kan være andre faktorer som kan påvirker høyden. (Når vi videre skal beregne en linjær modell for plottet ser vi at r_squared er på 72,3%, dette tallet viser hvor mye av "daughters" variabelen blir beskrevet av "midparent" altså er det 27,7% som er bestemt av andre ukjente faktorer)
+  b) Vi ser av plottet at settene ikke er injektive. For "Daughter Hight" = 69 finnes flere "Midparent Height", og for "Midparent Height" = 65,5 er to kanditater kandidater av døttre. Dette sier oss at det ikke er perfekt korrelasjon, siden det da ville vert en til en. Dette sier oss ikke at det ikke er en korrelasjon, men at det også kan være andre faktorer som kan påvirker høyden.
   
   
   
   
-  c)
-    Vi skal bruke dataene som står under oppgaven til å lage en regresjonslinje av plottet [f(x)=ax+b] (der jeg for min egen upraktiske del har satt x= midparent og y=daughters) og bruke funksjonen til å predikere hvilken høyde en datter som har forreldre med snitthøyde 70 har. Vi skal også drøfte om dette er en god approksimasjon dersom snithøyden til forreldre er 74.
+  c) Vi skal bruke dataene som står under oppgaven til å lage en regresjonslinje av plottet [f(x)=ax+b] (der jeg for min egen upraktiske del har satt x= midparent og y=daughters) og bruke funksjonen til å predikere hvilken høyde en datter som har forreldre med snitthøyde 70 har. Vi skal også drøfte om dette er en god approksimasjon dersom snithøyden til forreldre er 74.
   
 ```{r}
  
@@ -122,4 +121,26 @@ anova <- anova(object = lm_daughters_explained_by_midparent)
  
  Konklusjon:
  Sum of Squared Errors (SSE) er summen av avvik mellom reel høyde på, i dette tilfellet, døttres høyde og estimert høyde i regresjonslinjen kvadrert. Sum of Squared Total (SST) er samme prinsipp, men spenner mellom målt høyde og middelverdi, også dette kvadrert for å ungå at de forskjellige målingene kanselerer segt selv ut. $r^2$ er ens sammenheng som kommer ut av disse to komponentene $r^2 = \frac{SST-SSE}{SST}= 1 - \frac{SSE}{SST}$. Mer intuitivt kan det forklares som forskjellen mellom varians rundt regresjonslinjen og varians rund middelverdi relativ til varians til middelverdi. Dette forklarer oss hvor mye av variansen som kan forklares av korellasjon og hvor mye som er tilfeldig. I dette tilfellet er $r^2\approx 68,41$, sammenheng mellom høyden på døttre og forreldres snitt høyde.
+ 
+ e) Ja, det kan sees på som regresjon mot middelverdi. I henhold til Galtons forsøk med sønner og fedres høyde, sønnene plasserte seg ett sted mellom fedrene og middelverdien. Var far svaær høy var sønnen det også, men med ett nedtrekk mot gjennomsnittet. Samme gjaldt med motsatt fortegn med de under gjennomsnitt lave. En kan derfor legge samme årsak til grunn når resultatet for døttre målt mot snitthøyden til forreldre har samme resultat. 
+ 
+ 
+2. Kapittel 12.6, oppgave 71 side 680:
+
+
+
+```{r}
+x <- c(0, 7, 17, 114, 133, 142, 190, 218, 237, 285)
+y <- c(20.3, 19.8, 19.5, 15.9, 15.1, 14.7, 11.9, 11.5, 8.3, 6.6)
+
+.lin_mod_y_vs_x <- lm(formula = .y ~ .x)
+
+.residuals <- .lin_mod_y_vs_x$residuals
+
+## Et mer direkte alternativ få å hente ut residualene er:
+residuals(.lin_mod_y_vs_x)
+
+
+```
+
   
