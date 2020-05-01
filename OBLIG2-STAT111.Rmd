@@ -1,7 +1,7 @@
 ---
 title: "Oblig 2-STAT111"
 author: "Sigbjorn Fjelland"
-date: "4/10/2020"
+date: "01/05/2020"
 output: pdf_document
 ---
 
