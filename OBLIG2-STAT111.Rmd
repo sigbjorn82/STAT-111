@@ -98,13 +98,6 @@ print(verdi_3)
 ```
  Konklusjon: Dersom man bruker modellen til å estimere innenfor den rangen av snithøyder som er gitt i oppgaven gir den ett plausibelt resultat. Når vi ekstrapolerer til 74 tommer som er like utenfor chartet gir dette en høyde på datteren som er ca 72,36, hvilket også er realistisk. Dersom man har forreldre som tommelite på med snitthøyde på 5 tommer begynner det å bli verre. Da har datteren en høyde på 6,43 tommer. Litt domenekunskap tilsier at slike mennesker ikke finnes (gitt at man ikke har tatt Terry Pratchets "The Wee Free Men" bokstavlig). Vi er her offer for "the danger of extrapolation". Det vil si at ekstrapolering i linjær regresjon bør skje innen ett rimelig spenn av modellen.
 
-\centering
-![width='100%'](/home/sigbjorn/Pictures/tiffany-aching-wee-free-men-sample_orig.jpg)
-\raggedright
-\tableofcontents
-\clearpage
- 
- 
  
  d) Vi skal her finne Sum of Squared Errors (SSE), Sum of Squared Total (SST) og coefficient of determination, bedre kjent som $r^2$.
     
@@ -150,8 +143,7 @@ lin_mod_y_vs_x <- lm(formula = y ~ x)
 
 residuals <- lin_mod_y_vs_x$residuals
 
-abline(h = mean(y), col = "red", lty =2)
-abline(lin_mod_y_vs_x, col = "blue") 
+
 ## Et mer direkte alternativ få å hente ut residualene er:
 residuals(lin_mod_y_vs_x)
 
