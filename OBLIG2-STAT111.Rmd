@@ -97,6 +97,12 @@ verdi_3 <-regresjonslinje(inn_verdi_5)
 print(verdi_3)
 ```
  Konklusjon: Dersom man bruker modellen til å estimere innenfor den rangen av snithøyder som er gitt i oppgaven gir den ett plausibelt resultat. Når vi ekstrapolerer til 74 tommer som er like utenfor chartet gir dette en høyde på datteren som er ca 72,36, hvilket også er realistisk. Dersom man har forreldre som tommelite på med snitthøyde på 5 tommer begynner det å bli verre. Da har datteren en høyde på 6,43 tommer. Litt domenekunskap tilsier at slike mennesker ikke finnes (gitt at man ikke har tatt Terry Pratchets "The Wee Free Men" bokstavlig). Vi er her offer for "the danger of extrapolation". Det vil si at ekstrapolering i linjær regresjon bør skje innen ett rimelig spenn av modellen.
+
+\centering
+![width='100%'](/home/sigbjorn/Pictures/tiffany-aching-wee-free-men-sample_orig.jpg)
+\raggedright
+\tableofcontents
+\clearpage
  
  
  
@@ -225,10 +231,45 @@ level <- 0.1
 c1 <- 1 + qsignrank(p = level, n = length(observasjoner), lower.tail = FALSE)
 
 n = 15
+
 c2 <- ((n*(n+1))/2)-c1
 
 
 cat(" c1 = ", c1, "    c2 = ", c2, "    s_pluss =", s_pluss)
 
 ```
-siden $c_2=36$ og $s_+= 39\rightarrow s_+>c_2$ dette fører til at $H_0$ forkastes
+siden $c_2=36$ og $s_+= 39\rightarrow s_+>c_2$ dette fører til at $H_0$ forkastes.
+
+
+Oppgave 4 - Kapittel 14.2, oppgave 12 side 770
+
+Oppgaven dreier seg om en studie gjort på spedbarn, der en sjekker cotinin nivå i urin på et sett spedbarn utsatt for røk og ett sett spedbarn som ikke er eksponert for røyk.
+
+$H_0:$ cotionin nivå er uendret hos eksponert og ikke eksponert med andre ord $\mu_1 - \mu_2 = 25$
+$H_a:$ cotionin nivå er høyere hos spedbarn som er eksponert enn de som ikke er eksponert $\mu_{unexp} - \mu_{exp} < 25$
+
+```{r}
+## Vektorene er deffinert ved
+Unexposed <- c( 8, 11, 12, 14, 20, 43, 111)
+Exposed <- c(35, 56, 83, 92, 128, 150, 176, 208)
+
+## Registrer lengdene
+m <- min(length(Unexposed), length(Exposed)) # vi velger m minst
+n <- max(length(Unexposed), length(Exposed)) # og n størst slik at vi tilfredstiller m =< n
+
+x <- Unexposed
+y <- Exposed
+
+Delta <- 0.25 
+
+w <- sum(rank(c(x - Delta, y))[1:m])
+## Kritisk verdi: Her hentet fra tabell A.13, side 810.
+
+c1 <- 71
+
+c2 <- m*(m+n+1) - c1
+
+cat("w = ", w, "     c1 = ", c1,"     c2 = ", c2)
+```
+konklusjon:
+vi ser at $w<c_2\rightarrow H_0\text{  forkastes!}$, vi går dermed videre med teorien om at de som er exponert har høyere cotionin nivå en de som ikke er eksponert $[H_a]$
